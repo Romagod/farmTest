@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Components.Notifications;
 using Components.ScriptableObjects.Item;
 using Data.SerializeObjects;
@@ -167,6 +168,17 @@ namespace Models
             SerializeInventoryData data = new SerializeInventoryData();
             data.LoadItems(serializeInventory.Items);
             app.Save(data, "inventory");
+        }
+
+        public int GetResourceCount(string foodItemName)
+        {
+            var result = 0;
+            var items = serializeInventory.Items.Where(item => item.itemData.Name == foodItemName);
+            foreach (var item in items.ToArray())
+            {
+                result = item.Count;
+            }
+            return result;
         }
 
         public string CountOfItem(string itemName)

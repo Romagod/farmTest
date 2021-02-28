@@ -61,7 +61,7 @@ namespace Controllers.Game
         public void NewGame(object[] pData)
         {
             app.model.player.DeleteSavedData();
-            var sceneName = app.model.game.LevelConfig.NextSceneName;
+            var sceneName = app.ConfigData.configData.Game.LevelConfig.NextSceneName;
             SceneManager.LoadScene(sceneName);
         }
     }

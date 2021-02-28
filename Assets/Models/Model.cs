@@ -26,17 +26,17 @@ namespace Models
         {
             CheckDirectory();
             BinaryFormatter bf = new BinaryFormatter(); 
-            FileStream file = File.Create( $"{Application.persistentDataPath}/data/{name}.dat"); 
+            FileStream file = File.Create( $"{Application.persistentDataPath}{modelDataPath}{name}.dat"); 
             bf.Serialize(file, model);
             file.Close();
         }
         public object Load(string name)
         {
-            if (File.Exists($"{Application.persistentDataPath}/data/{name}.dat"))
+            if (File.Exists($"{Application.persistentDataPath}{modelDataPath}{name}.dat"))
             {
                 BinaryFormatter bf = new BinaryFormatter();
                 FileStream file = 
-                    File.Open($"{Application.persistentDataPath}/data/{name}.dat", FileMode.Open);
+                    File.Open($"{Application.persistentDataPath}{modelDataPath}{name}.dat", FileMode.Open);
                 var data = bf.Deserialize(file);
                 file.Close();
                 return data;
@@ -89,7 +89,7 @@ namespace Models
 
         public void Delete(string s)
         {
-            File.Delete( $"{Application.dataPath}{modelDataPath}{s}.dat" );
+            File.Delete( $"{Application.persistentDataPath}{modelDataPath}{s}.dat" );
             
             app.RefreshEditorProjectWindow();
         }

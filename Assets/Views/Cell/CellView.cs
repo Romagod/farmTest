@@ -43,9 +43,13 @@ namespace Views.Cell
             app.Notify(Notification.CellFoodChange,this, obj);
         }
 
-        public void Feed()
+        public void CellFeed()
         {
             _cell.Feed();
+        }
+
+        public void Feed()
+        {
             var obj = new object[] { 1 };
             app.Notify(Notification.CellEatFood,this, obj);
         }

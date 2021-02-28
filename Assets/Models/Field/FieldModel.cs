@@ -118,7 +118,7 @@ namespace Models.Field
             var id = v.transform.GetSiblingIndex();
             CellModel model = v.gameObject.AddComponent<CellModel>();
             model.LoadCellModel(cell);
-            if (ModelsData.ContainsKey(id))
+            if (ModelsData != null && ModelsData.ContainsKey(id))
             {
                 model.Load(ModelsData[id]);
             }

@@ -51,6 +51,10 @@ namespace Controllers.Field
             if (!app.model.ResourceExists(model.ResourceName))
                 return;
             var resource = app.model.ResourcesDictionary[model.ResourceName];
+            if (app.model.player.GetResourceCount(resource.FoodItem.Name) <= 0)
+                return;
+            var cellView = (CellView) pData[0];
+            cellView.CellFeed();
 
             app.model.player.DeleteResource(resource.FoodItem.Name, 1);
         }

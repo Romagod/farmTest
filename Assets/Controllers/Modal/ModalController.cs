@@ -116,7 +116,7 @@ namespace Controllers.Modal
         {
             var itemView = (ModalItemView) pData[0];
             app.model.player.AddResourceToInventory(itemView._itemData.Name, 1);
-            app.model.player.SetMoney(app.model.player.money -app.model.ui.modal.value.BuyPrice);
+            app.model.player.SetMoney(app.model.player.money -itemView._itemData.BuyPrice);
             app.view.ui.modalShop.ModalClose();
         }
 
