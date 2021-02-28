@@ -1,4 +1,5 @@
 ﻿using System;
+using Components.ProgressBar;
 using Components.ScriptableObjects.Field;
 using Components.ScriptableObjects.Item;
 using Models.Field;
@@ -12,6 +13,9 @@ namespace Components.Field
         public SpriteRenderer item;
         public SpriteRenderer resource;
         public GameObject resourceContainer;
+        public ProgressBarComponent eatProgressBarComponent;
+        public ProgressBarComponent generateProgressBarComponent;
+        
         public float secondsBetweenSpawn;
         public bool generatorOn = false;
         public bool eatingOn = false;
@@ -105,7 +109,7 @@ namespace Components.Field
         {
             if (!generatorOn) return;
             _elapsedTime += Time.deltaTime;
-                 
+            generateProgressBarComponent.SetValue(_elapsedTime/secondsBetweenSpawn);
             if (_elapsedTime > secondsBetweenSpawn)
             {
                 _elapsedTime = 0;
@@ -117,6 +121,7 @@ namespace Components.Field
         {
             if (!eatingOn) return;
             _elapsedEatTime += Time.deltaTime;
+            eatProgressBarComponent.SetValue(_elapsedEatTime/secondsBetweenEat);
             if (countOfFood > 0) 
                 generatorOn = true;
             if (_elapsedEatTime > secondsBetweenEat)
@@ -140,6 +145,8 @@ namespace Components.Field
         {
             if (resourceContainer != null)
                 resourceContainer.SetActive(false);
+
+            if (countOfFood <= 0) eatingOn = false;
         }
     }
 }

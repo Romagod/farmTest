@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
 using Components.Notifications;
+using Components.ProgressBar;
 using DefaultNamespace;
 using Models.Field;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace Views.Cell
 {
     public class CellView : Element
     {
+
         [HideInInspector]
         private Components.Field.Cell _cell;
         private SpriteRenderer _sprite;
