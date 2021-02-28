@@ -20,7 +20,7 @@ namespace Models.Field
         public int countOfCellsHeight;
         public CellData cell;
         
-        [HideInInspector] 
+        [HideInInspector] public Dictionary<Vector3, CellModel> CellsPosition;
         private Dictionary<int, CellModel> Cells;
         private Dictionary<int, SerializeCellData> ModelsData;
         public CellModel ActiveCellModel;
@@ -50,31 +50,39 @@ namespace Models.Field
             {
                 Cells = new Dictionary<int, CellModel>();
             }
+            if (CellsPosition == null)
+            {
+                CellsPosition = new Dictionary<Vector3, CellModel>();
+            }
+            if (cell == null)
+            {
+                cell = app.ConfigData.configData.Field.Cell;
+            }
             if (ModelsData == null)
             {
                 ModelsData = new Dictionary<int, SerializeCellData>();
                 var models = LoadList("field");
                 if (models == null)
+                {
+                    ModelsData = null;
                     return;
+                }
                 foreach (var modelData in models)
                 {
                     ModelsData.Add(modelData.Id, modelData);
                 }
             }
 
-            if (cell == null)
-            {
-                cell = app.ConfigData.configData.Field.Cell;
-            }
+            
         }
         
         private List<SerializeCellData> LoadList(string name)
         {
-            if (File.Exists($"{Application.dataPath}/data/{name}.dat"))
+            if (File.Exists($"{Application.persistentDataPath}/data/{name}.dat"))
             {
                 BinaryFormatter bf = new BinaryFormatter();
                 FileStream file = 
-                    File.Open($"{Application.dataPath}/data/{name}.dat", FileMode.Open);
+                    File.Open($"{Application.persistentDataPath}/data/{name}.dat", FileMode.Open);
                 var data = (List<SerializeCellData>)bf.Deserialize(file);
                 file.Close();
                 return data;
@@ -115,6 +123,7 @@ namespace Models.Field
                 model.Load(ModelsData[id]);
             }
             
+            CellsPosition.Add(v.transform.position, model);
             Cells.Add(id, model);
 
             // TODO: Упростить взаимодействие

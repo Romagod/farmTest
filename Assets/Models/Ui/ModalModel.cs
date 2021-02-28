@@ -57,6 +57,9 @@ namespace Models.Ui
                     item.Count--;
                 };
             }
+            SerializeInventoryData data = new SerializeInventoryData();
+            data.LoadItems(app.model.player.serializeInventory.Items);
+            app.Save(data, "inventory");
         }
         
         private void ClearContainer()

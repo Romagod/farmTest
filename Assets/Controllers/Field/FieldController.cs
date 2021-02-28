@@ -23,6 +23,7 @@ namespace Controllers.Field
             var view = (CellView) pData[0];
             var model = app.model.field.FindCellModel(view);
             model.NewResource(count);
+            app.model.field.SaveField();
             view.SetResourceSprite(model);
         }
         public void CellClick(params object[] pData)

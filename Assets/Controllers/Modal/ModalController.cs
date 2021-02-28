@@ -19,6 +19,7 @@ namespace Controllers.Modal
                 return;
             app.view.ui.modal.GenerateGoals();
             app.view.ui.modal.Open("Добро пожаловать!", app.ConfigData.configData.Game.LevelConfig);
+            app.view.ui.ModalIsOpen = true;
         }
         public void CellOpen(params object[] pData)
         {
@@ -66,6 +67,13 @@ namespace Controllers.Modal
 
         public void InventoryOpen(object[] pData)
         {
+            var hand = app.model.player.GetHand();
+            if (hand != null)
+            {
+                var item = (ItemData) hand;
+                app.model.player.AddResourceToInventory(item.Name, 1);
+                app.model.player.PutToHand();
+            }
             app.view.ui.modalInventory.ClearInventory();
             app.view.ui.modalInventory.GenerateInventory();
             app.view.ui.modalInventory.Open("Инвентарь");
@@ -89,8 +97,9 @@ namespace Controllers.Modal
             app.model.player.PutToHand(app.model.ResourcesDictionary[itemView._itemData.Name]);
 
             // itemView.RemoveElement();
-            app.view.ui.modalInventory.ClearInventory();
-            app.view.ui.modalInventory.GenerateInventory();
+            app.view.ui.modalInventory.ModalCellClose();
+            // app.view.ui.modalInventory.ClearInventory();
+            // app.view.ui.modalInventory.GenerateInventory();
         }
 
         public void InventoryNext(object[] pData)

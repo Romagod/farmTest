@@ -33,6 +33,7 @@ namespace Views.Ui.Modal
 
         private void ModalOnClose()
         {
+            app.view.ui.ModalIsOpen = false;
         }
 
         private void ModalAction(string action)
@@ -92,6 +93,7 @@ namespace Views.Ui.Modal
         private void OnCloseBtnClick()
         {
             ClearGoals();
+            app.view.ui.ModalIsOpen = false;
         }
 
         private void Start()

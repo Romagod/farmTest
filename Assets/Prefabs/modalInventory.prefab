@@ -166,9 +166,9 @@ RectTransform:
   m_Father: {fileID: 7004893881283236138}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 350, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 350, y: -369.05664}
   m_SizeDelta: {x: 700, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2001144681809206189
@@ -1924,6 +1924,7 @@ MonoBehaviour:
   speedValue: {fileID: 3419098548176322287}
   buttonText: {fileID: 0}
   foodCount: {fileID: 0}
+  feedText: {fileID: 0}
   countOfFood: 0
   foodName: 
 --- !u!114 &1956441734951667181

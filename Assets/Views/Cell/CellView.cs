@@ -60,10 +60,9 @@ namespace Views.Cell
             _cell.LoadSprites(model);
         }
 
+
         private void OnMouseUp() {
-            #if UNITY_EDITOR
-                SingleClick();
-            #endif
+            SingleClick();
         }
 
 

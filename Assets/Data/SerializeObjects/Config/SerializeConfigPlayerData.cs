@@ -10,5 +10,7 @@ namespace Data.SerializeObjects.Config
         [SerializeField] public Sprite MoneySprite;
         [SerializeField] public InventoryData Inventory;
         [SerializeField] public InventoryData Shop;
+        [SerializeField] public int money;
+        [SerializeField] public string levelName;
     }
 }

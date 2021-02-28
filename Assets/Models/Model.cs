@@ -24,24 +24,33 @@ namespace Models
 
         public void Save(object model, string name)
         {
+            CheckDirectory();
             BinaryFormatter bf = new BinaryFormatter(); 
-            FileStream file = File.Create( $"{Application.dataPath}/data/{name}.dat"); 
+            FileStream file = File.Create( $"{Application.persistentDataPath}/data/{name}.dat"); 
             bf.Serialize(file, model);
             file.Close();
         }
         public object Load(string name)
         {
-            if (File.Exists($"{Application.dataPath}/data/{name}.dat"))
+            if (File.Exists($"{Application.persistentDataPath}/data/{name}.dat"))
             {
                 BinaryFormatter bf = new BinaryFormatter();
                 FileStream file = 
-                    File.Open($"{Application.dataPath}/data/{name}.dat", FileMode.Open);
+                    File.Open($"{Application.persistentDataPath}/data/{name}.dat", FileMode.Open);
                 var data = bf.Deserialize(file);
                 file.Close();
                 return data;
             }
             else
                 return null;
+        }
+
+        private void CheckDirectory()
+        {
+            var exists = System.IO.Directory.Exists($"{Application.persistentDataPath}/data");
+
+            if(!exists)
+                System.IO.Directory.CreateDirectory($"{Application.persistentDataPath}/data");
         }
 
         public bool ResourceExists(string name)

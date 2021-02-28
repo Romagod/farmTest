@@ -98,7 +98,7 @@ namespace Models
 
                 serializeInventory.Items.Add(inventoryItemData);
             }
-            SerializeInventoryData data = new SerializeInventoryData();
+            var data = new SerializeInventoryData();
             data.LoadItems(serializeInventory.Items);
             app.Save(data, "inventory");
             app.Notify(Notification.GameCheckGoals, this);
@@ -109,6 +109,8 @@ namespace Models
             moneySprite = app.ConfigData.configData.Player.MoneySprite;
             inventory = app.ConfigData.configData.Player.Inventory;
             shop = app.ConfigData.configData.Player.Shop;
+            money = app.ConfigData.configData.Player.money;
+            levelName = app.ConfigData.configData.Player.levelName;
             LoadInventory();
             LoadPlayer();
             LoadShop();
@@ -121,7 +123,7 @@ namespace Models
             if (inventoryModel == null)
             {
                 inventoryModel = new SerializeInventoryData();
-                inventoryModel.LoadInventory(inventory.Items);
+                inventoryModel.LoadInventory(app.ConfigData.configData.Player.Inventory.Items);
                 app.Save(inventoryModel, "inventory");
             }
             
@@ -133,7 +135,7 @@ namespace Models
             if (inventoryModel == null)
             {
                 inventoryModel = new SerializeInventoryData();
-                inventoryModel.LoadInventory(shop.Items);
+                inventoryModel.LoadInventory(app.ConfigData.configData.Player.Shop.Items);
                 app.Save(inventoryModel, "shop");
             }
             

@@ -21,6 +21,8 @@ MonoBehaviour:
       MoneySprite: {fileID: 21300000, guid: 829af8db7a162574c893f6cb617c2663, type: 3}
       Inventory: {fileID: 11400000, guid: aa3179a2fab40f144951ea946a24be03, type: 2}
       Shop: {fileID: 11400000, guid: d17e828c6ea5b93478b7af7d9609d53e, type: 2}
+      money: 50
+      levelName: 
     Game:
       LevelConfig: {fileID: 11400000, guid: ff35580b1b7da07419729d2db2be7ca1, type: 2}
       Resources: []

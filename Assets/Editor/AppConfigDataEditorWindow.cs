@@ -65,6 +65,8 @@ public class AppConfigDataEditorWindow : ExtendedEditorWindow
                 DrawField("MoneySprite", true);
                 DrawField("Inventory", true);
                 DrawField("Shop", true);
+                DrawField("money", true);
+                DrawField("levelName", true);
             EditorGUILayout.EndVertical();
             
         }
